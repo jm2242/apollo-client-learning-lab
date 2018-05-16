@@ -1,17 +1,25 @@
 import React from 'react'
-
+import "./issue.css"
 const Issue = ({ title, author, comments }) =>
-    <div style={{}}>
-        <h2>{title}</h2>
-        <b>Author:</b> {author.login}
-        <span>
-            <img
-                style={{maxHeight: "100px"}}
-                src={author.avatarUrl}>
-            </img>
-        </span>
-        <div>
-            {`Comments: ${comments.edges.map( ({node }) => node.body).join(" ")}`}
+    <div className="IssueItem">
+        <div className="IssueItem-content">
+            <h2>{title}</h2>
+            <b>Author:</b> {author.login}
+            <div>
+                <img
+                    style={{maxHeight: "100px"}}
+                    src={author.avatarUrl}>
+                </img>
+            </div>
+
+            <div>
+                <b>Comments:</b>
+                <ul>
+                {
+                    comments.edges.map( ({node }) => <li>{node.body}</li>)
+                }
+                </ul>
+            </div>
         </div>
 
     </div>

@@ -2,6 +2,7 @@ import React, { Fragment } from 'react'
 import { Query } from 'react-apollo';
 import gql from 'graphql-tag'
 import Issue from "./Issue"
+import "./issueList.css"
 const GET_ISSUES = gql`
 query getIssues($organization: String!, $repoName: String!, $cursor: String) {
     organization(login: $organization) {
@@ -98,9 +99,9 @@ const IssuesList = () => (
             const { totalCount, edges, pageInfo  } = issues
 
             return (
-                <Fragment>
-                    <h2> Quorum's Issues - Total: {totalCount} </h2>
-                    <div style={{marginBottom: "100px"}}>
+                <Fragment className="Issues">
+                    <h2 style={{textAlign: "center"}}> Quorum's Issues - Total: {totalCount} </h2>
+                    <div className="IssueList" style={{marginBottom: "100px"}}>
                     {edges.map( ({ node }) => <Issue key={node.id} {...node} />)}
                     {
                         pageInfo.hasNextPage &&

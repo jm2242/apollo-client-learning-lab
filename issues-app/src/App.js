@@ -17,7 +17,7 @@ class App extends Component {
   render() {
     return (
       <Router>
-        <div style={{textAlign: "center"}}>
+        <div>
           <Navigation />
           <Profile  />
           <Route
