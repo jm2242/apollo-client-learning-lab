@@ -1,10 +1,19 @@
 import React from 'react'
-import { Query } from 'react-apollo';
 
+const Issue = ({ title, author, comments }) =>
+    <div style={{}}>
+        <h2>{title}</h2>
+        <b>Author:</b> {author.login}
+        <span>
+            <img
+                style={{maxHeight: "100px"}}
+                src={author.avatarUrl}>
+            </img>
+        </span>
+        <div>
+            {`Comments: ${comments.edges.map( ({node }) => node.body).join(" ")}`}
+        </div>
 
-const Issue = ({ number, author }) =>
-    <div>
-        {number}: {author.login}
     </div>
 
 export default Issue
