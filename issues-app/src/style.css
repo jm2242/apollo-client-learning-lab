@@ -51,3 +51,8 @@ a:active {
 pre {
     white-space: pre-wrap;
 }
+
+.profile {
+    text-align: center;
+    margin-bottom: 200px;
+}
