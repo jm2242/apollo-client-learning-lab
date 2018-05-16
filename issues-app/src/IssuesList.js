@@ -81,13 +81,16 @@ const updateQuery = (previousResult, { fetchMoreResult }) => {
 const IssuesList = () => (
     <Query
         query={GET_ISSUES}
+        notifyOnNetworkStatusChange = {
+                true
+            }
         variables={{
             organization: "QuorumUS",
             repoName: "issues",
         }}
     >
         {({ data, loading, error, fetchMore }) => {
-            if (loading) {
+            if (loading && !data.organization) {
                 return <div>Loading Your Issues...</div>
             }
 
@@ -102,6 +105,7 @@ const IssuesList = () => (
                     {
                         pageInfo.hasNextPage &&
                         <button
+                            disabled={loading}
                             type="button"
                             onClick={() => fetchMore({
                                 variables: {
@@ -110,7 +114,7 @@ const IssuesList = () => (
                                 updateQuery,
                             })}
                         >
-                            Load More
+                            {loading ? "Loading Issues..." : "Load More Issues"}
                         </button>
                     }
                     </div>
